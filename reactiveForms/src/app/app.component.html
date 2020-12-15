@@ -1,0 +1,125 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <div  class="container">
+    <h1 style="color:red" >{{title}}</h1> 
+  
+  <form [formGroup]="myform" >
+  
+    <div class="form-group ">
+      <label for="txt1" > Name : </label>
+      <input    formControlName="name"   type="text"
+        id="txt1" placeholder="Enter your name" name="Username" class="form-control" 
+        [class.is-invalid]="name2.invalid && name2.touched" [class.is-valid]="name2.valid">
+    </div>
+    
+    <div class="text-danger" *ngIf="!name2.valid && name2.touched"> name is mandatory</div>
+  
+  
+  
+    <div class="form-group"> 
+        <label> Gender : </label>
+        <input    formControlName="gender" type="radio" id="male1" value="male" name="gender" >
+        <label for="male1">male </label>
+        <input   formControlName="gender" type="radio" id="female1" value="female" name="gender"  >
+
+        <label for="female1"> female </label> 
+   
+    </div>
+  
+     <div class="form-group"> 
+        <label for="dob1"> Date of Birth: </label>
+        <input  type="date"  formControlName="dob" id="dob1"  name="dob"  class="form-control">
+    </div>
+  
+
+
+    <div class="form-group ">
+      <label for="e-mail" > Email : </label>
+      <input    formControlName="email"   type="text"
+        id="e-mail" placeholder="Enter your email" name="email" class="form-control " 
+        [class.is-invalid]="eml3.invalid && eml3.touched" [class.is-valid]="eml3.valid">
+    </div>
+    
+    <div class="text-danger" *ngIf="!eml3.valid && eml3.touched"> email is mandatory</div>
+
+  
+    <div class="form-group"> 
+        <label for="phone1"> Phone : </label>
+        <input   formControlName="phone" type="tel"  id="phone1" 
+        placeholder="Enter phone number" name="phone"  class="form-control"  
+        [class.is-invalid]="phn.invalid && phn.touched" [class.is-valid]="phn.valid">
+    </div>
+    <div class="text-danger" *ngIf="!phn.valid && phn.touched"> phone is mandatory</div>
+  
+    <div formGroupName="address" >
+      <div class="form-group"> 
+        <label for="city1"> City : </label>
+        <input type="text"   id="city1"  placeholder="Enter your city" 
+        name="city" formControlName="city" class="form-control">
+      </div>
+      
+        <div class="form-group"> 
+        <label for="state1"> State : </label>
+        <input type="text"  formControlName="state"  id="state1" placeholder="Enter your state"
+         name="state" class="form-control">
+      </div>
+    
+        <div class="form-group"> 
+        <label for="pincode1"> Pincode : </label>
+        <input type="text" formControlName="pincode"  id="pincode1" 
+         placeholder="Enter your pincode" name="pincode"  class="form-control" >
+      </div>
+    </div>
+  
+    <div class="form-group"> 
+        <label for="country1"> Country : </label>
+        <select   formControlName="country"  id="country1" name="country"  class="form-control" >
+          <option selected>select</option>
+          <option *ngFor="let k of countryarray" >{{k}}</option>
+        </select>
+    </div>
+  
+  
+    <div class="form-group">
+  <button class="btn btn-primary" [disabled]="myform.invalid" type="button" (click)="addData()"> Submit  </button>
+  </div>
+  
+  
+  
+  <div class="table table-bordered text-center">
+  <table >
+    <tr >
+      <th>Name</th>
+      <th>Gender</th>
+      <th>DOB</th>
+      <th>Email</th>
+      <th>Phone number</th>
+      <th>Address</th>
+
+      <th>Country</th>
+      <th>Delete</th>
+    </tr>
+  
+    <tr *ngFor="let i of todolist;let ind=index">
+      <td>{{i.name}}</td>
+     <td>{{i.gender}}</td>
+     <td>{{i.dob}}</td>
+      <td>{{i.email}}</td>
+      <td>{{i.phone}}</td>
+      <td>{{i.address.city}}<br>{{i.address.state}}<br>{{i.address.pincode}}</td>
+      <td>{{i.country}}</td>
+      <td><button class="btn btn-danger" (click)="deleteData(ind)">X</button></td>
+    </tr>
+  </table></div>
+   
+  </form></div>
+  <!-- <div class="col-xs-12 col-12 col-md-4 form-group">
+    <input type="text"
+           placeholder="Datepicker"
+           class="form-control"
+           bsDatepicker>
+  </div> -->
+  </body>
+  </html>
